@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
     @Column
     private boolean estado;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name="departamentos_id")
     private Long departamento;
 
