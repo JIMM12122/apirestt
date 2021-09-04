@@ -1,1 +1,5 @@
+org\una\inventario\exceptions\InformationNotSavedException.class
+org\una\inventario\exceptions\NotImplementedException.class
 org\una\inventario\SwaggerConfiguration.class
+org\una\inventario\controllers\ExceptionHandlerController.class
+org\una\inventario\exceptions\MissingInputsException.class
