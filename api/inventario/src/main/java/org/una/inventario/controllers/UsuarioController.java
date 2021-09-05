@@ -81,6 +81,20 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity<?> findBydepartamentoId(@PathVariable(value = "id") Long id) {
+        try {
+            Optional<List<UsuarioDTO>> result = usuarioService.findByDepartamentoId(id);
+            if (result.isPresent()) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody

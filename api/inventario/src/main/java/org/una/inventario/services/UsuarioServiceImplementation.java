@@ -52,6 +52,15 @@ public class UsuarioServiceImplementation implements IUsuarioService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Optional<List<UsuarioDTO>> findByDepartamentoId(Long id) {
+        List<Usuario> usuario = usuarioRepository.findByDepartamentoId(id);
+        if (usuario.isEmpty()) throw new NotFoundInformationException();
+        List<UsuarioDTO> usuarioDTO = MapperUtils.DtoListFromEntityList(usuarioRepository.findByDepartamentoId(id), UsuarioDTO.class);
+        return Optional.ofNullable(usuarioDTO);
+    }
+
+    @Override
     @Transactional
     public void delete(Long id) {
         usuarioRepository.deleteById(id);
@@ -99,5 +108,7 @@ public class UsuarioServiceImplementation implements IUsuarioService {
         List<UsuarioDTO> usuarioDTOList = MapperUtils.DtoListFromEntityList(usuarioList, UsuarioDTO.class);
         return Optional.ofNullable(usuarioDTOList);
     }
+
+
 
 }
